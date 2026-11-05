@@ -6,5 +6,5 @@ pgvector
 pydantic>=2
 httpx
 tenacity
-google-genai
 datasets
+openai
