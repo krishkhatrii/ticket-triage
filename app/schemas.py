@@ -36,3 +36,14 @@ class Classification(BaseModel):
     category: Category
     urgency : Urgency
     confidence : float= Field(ge=0, le=1)
+
+class SourceOut(BaseModel):
+    ticket_id: int
+    subject: str
+    answer: str | None
+    similarity: float
+
+class TriageOut(BaseModel):
+    ticket: TicketOut
+    classification: Classification
+    sources: list[SourceOut]

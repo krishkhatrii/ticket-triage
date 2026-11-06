@@ -10,6 +10,7 @@ class Ticket(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     subject: Mapped[str] = mapped_column(Text)
     body: Mapped[str] = mapped_column(Text)
+    answer: Mapped[str | None] = mapped_column(Text)
     status: Mapped[str] = mapped_column(String(100) ,default="open")
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
 

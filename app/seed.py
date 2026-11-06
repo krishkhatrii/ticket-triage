@@ -12,7 +12,7 @@ def main():
     init_db()
     ds = load_dataset("Tobi-Bueck/customer-support-tickets", split="train")
     ds = ds.filter(lambda r: r["language"] == "en" and r["subject"] and r["body"]
-               and r["queue"] and r["priority"])
+               and r["answer"] and r["queue"] and r["priority"])
 
     by_queue = defaultdict(list)
     for row in ds:
@@ -30,8 +30,8 @@ def main():
         print("Database already has tickets. Wipe it first (docker compose down -v).")
         return
     for row in seed_rows:
-        subject, body = clean(row["subject"]), clean(row["body"])
-        ticket = Ticket(subject=subject, body=body, status="resolved")
+        subject, body, answer = clean(row["subject"]), clean(row["body"]), clean(row["answer"])
+        ticket = Ticket(subject=subject, body=body, answer=answer, status="resolved")
         db.add(ticket)
         db.flush()  # assigns ticket.id without committing yet
         db.add(Classification(ticket_id=ticket.id, category=row["queue"],
