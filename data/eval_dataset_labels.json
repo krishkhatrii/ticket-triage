@@ -60,16 +60,16 @@
     "urgency": "high"
   },
   {
-    "subject": "Data Processing Delay Issue",
-    "body": "A financial organization is facing delays in data processing that are affecting the precision of investment analytics. The probable cause appears to be conflicts between software versions. Despite efforts such as restarting the system, applying patches, and troubleshooting, the issues continue. These delays have led to inaccurate investment advice, thereby impacting clients' portfolios. We have attempted various troubleshooting measures, but the problem persists. We kindly request your assistance in resolving this issue promptly to reduce any further disruptions. Please inform us of the next steps.",
+    "subject": "Problem with Software Applications",
+    "body": "Users are facing persistent crashes in multiple software applications while managing project management tasks. This could be due to memory overload or software conflicts. Despite clearing cache, updating applications, and restarting devices, the issue persists. Urgent assistance is needed to resolve the problem.",
     "category": "Product Support",
     "urgency": "medium"
   },
   {
-    "subject": "Technology Assistance",
-    "body": "Facing irregular data synchronization in project data within the SAP ERP SaaS platform. The issue might be due to compatibility issues with SAP ERP Central Component 6.0. We have attempted clearing the cache, updating to iOS 15, and verifying system compatibility settings, but the problem still exists. Please assist in resolving this issue.",
+    "subject": "Concern Regarding Investment Optimization Algorithm",
+    "body": "The investment optimization algorithm has been providing inconsistent recommendations, which may be due to syncing issues with updated data.",
     "category": "Product Support",
-    "urgency": "medium"
+    "urgency": "low"
   },
   {
     "subject": "Enable Vagrant Integration for Airtable in Project Management",

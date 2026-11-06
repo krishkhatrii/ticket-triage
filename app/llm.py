@@ -30,7 +30,7 @@ def embed(text: str) -> list[float]:
 
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=8), reraise=True)
-def generate(prompt: str, system: str | None = None, json_mode: bool = False) -> str:
+def generate(prompt: str, system: str | None = None, json_mode: bool = False, temperature: float = 0.0) -> str:
     start = time.perf_counter()
     messages = []
     if system:
@@ -40,6 +40,7 @@ def generate(prompt: str, system: str | None = None, json_mode: bool = False) ->
     response = client.chat.completions.create(
         model = LLM_MODEL,
         messages = messages,
+        temperature = temperature,
         timeout = 60,
         **kwargs,
     )
