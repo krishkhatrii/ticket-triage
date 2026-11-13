@@ -49,11 +49,27 @@ def generate(prompt: str, system: str | None = None, json_mode: bool = False, te
     logger.info("generate took %.0f ms, %s tokens", ms, tokens)
     return response.choices[0].message.content
 
-CATEGORIES = ", ".join(f'"{c.value}"' for c in Category)
+#CATEGORIES = ", ".join(f'"{c.value}"' for c in Category)
+CATEGORY_RULES = {
+    Category.general_inquiry: "general questions about the company or service, not about a problem, purchase or account",
+    Category.sales: "someone who hasn't bought yet, asking about pricing, plans, demos, quotes or upgrades",
+    Category.it_support: "the company's internal infrastructure: staff laptops, networks, VPN, email, accounts, passwords, access",
+    Category.product_support: "how to use or set up a product that is working correctly (how do I, configuration, features)",
+    Category.returns: "sending a physical item back, swapping it, or a faulty or wrong item received",
+    Category.outages: "the whole service is down or degraded for many users, or planned maintenance",
+    Category.customer_service: "orders, delivery, account changes or complaints about service quality, nothing technically broken",
+    Category.hr: "employee matters: payroll, leave, benefits, hiring, workplace policy",
+    Category.billing: "invoices, charges, refunds of money, payment failures, subscriptions",
+    Category.technical_support: "a bug or error in the product for one customer: crashes, error messages, a feature not working",
+}
+assert set(CATEGORY_RULES) == set(Category), "every category needs a rule"
+
+CATEGORY_LINES = "\n".join(f'  - "{c.value}": {rule}' for c, rule in CATEGORY_RULES.items())
 
 CLASSIFY_SYSTEM = f"""You are a support ticket classifier. 
 
-category must be exactly one of: {CATEGORIES}
+category must be exactly one of these (pick the closest match):
+{CATEGORY_LINES}
 urgency must be one of: "low", "medium", "high"
   - high: service is down, money is lost, or the user is blocked
   - medium: something is broken but there is a workaround
