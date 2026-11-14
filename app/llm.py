@@ -45,8 +45,8 @@ def generate(prompt: str, system: str | None = None, json_mode: bool = False, te
         **kwargs,
     )
     ms = (time.perf_counter() - start) * 1000
-    tokens = response.usage.total_tokens
-    logger.info("generate took %.0f ms, %s tokens", ms, tokens)
+    usage = response.usage
+    logger.info("generate took %.0f ms, %s in / %s out tokens", ms, usage.prompt_tokens, usage.completion_tokens)
     return response.choices[0].message.content
 
 #CATEGORIES = ", ".join(f'"{c.value}"' for c in Category)
